@@ -1,8 +1,8 @@
-import numpy as np
+import np as np
+import numpy
 
-
-x = [[2,3,7],[-2,5,6],[8,9,4]]
-y = [3,5,8]
+x = [[1,-8,-2],[1,1,5],[3,-1,1]]
+y = [1,4,-2]
 def gauss(x,y):
     f = len(y)
     c = np.zeros([f,f+1])
@@ -39,10 +39,25 @@ rta = error_relativo(h,x)
 print("Error Relativo")
 print(rta)
 
+#Error hacia adelante
+aux = np.copy(x)
+resultadoExacto = np.array([[-61/49],
+                           [-4/7],
+                           [57/49]])
+resta = np.subtract(resultadoExacto,aux)
+errorAdelante = np.linalg.norm(resta)
+print('Error hacia adelante: ' , errorAdelante)
+
+#Error hacia atras
+multiMatriz = np.matmul(x,aux)
+resta2 = np.subtract(y,multiMatriz)
+errorAtras = np.linalg.norm(resta2)
+print("Error hacia atras: ", errorAtras)
+
 def numeroDeCondicion(x):
     num_condicion_inf = np.linalg.cond(x,np.inf)
     print("----")
-    print(num_condicion_inf)
+    print("Numero de condicion: ", num_condicion_inf)
     return num_condicion_inf
+numeroCondicion1 = numeroDeCondicion(x)
 
-numeroCondicion = numeroDeCondicion(x)

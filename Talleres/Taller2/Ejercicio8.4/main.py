@@ -15,7 +15,7 @@ for i in range (0,n):
         u[i,j]=matriz[i,j]
 #Número de condición de la matriz A
 x=np.linalg.cond(matriz)
-#hacer ceros debajo de la diagonal principal     
+#hacer ceros debajo de la diagonal principal
 for k in range (0,n):
     for i in range (0,n) :
         if (k==i):
@@ -36,6 +36,13 @@ print(u)
 print("numero de condición matriz A")
 print(x)
 
-
+#Error hacia adelante
+aux = np.copy(x)
+resultadoExacto = np.array([[-61/49],
+                           [-4/7],
+                           [57/49]])
+resta = np.subtract(resultadoExacto,aux)
+errorAdelante = np.linalg.norm(resta)
+print('Error hacia adelante: ' , errorAdelante)
 
 
